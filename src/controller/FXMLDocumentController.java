@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestion_employe;
+package controller;
 
 import classe.Employee;
 import java.net.URL;
