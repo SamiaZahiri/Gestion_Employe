@@ -6,34 +6,33 @@
 package classe;
 
 import java.util.Date;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author PC
  */
 @Entity
-public class Employe {
+public class Employee {
     @Id
     @GeneratedValue
     private int id;
     private String nom;
     private String prenom;
     private String telephone;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date dateEmbauche;
     private String email;
     private String password;
 
-    public Employe() {
+    public Employee() {
     }
 
-    public Employe(String nom, String prenom, String telephone, Date dateEmbauche, String email, String password) {
+    public Employee(String nom, String prenom, String telephone, Date dateEmbauche, String email, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
@@ -41,18 +40,6 @@ public class Employe {
         this.email = email;
         this.password = password;
     }
-
-//    public Employe(int id, String nom, String prenom, String telephone, Date dateEmbauche, String email, String password) {
-//        this.id = id;
-//        this.nom = nom;
-//        this.prenom = prenom;
-//        this.telephone = telephone;
-//        this.dateEmbauche = dateEmbauche;
-//        this.email = email;
-//        this.password = password;
-//    }
-//    
-    
 
     public int getId() {
         return id;
@@ -109,7 +96,6 @@ public class Employe {
     public void setPassword(String password) {
         this.password = password;
     }
-    
     
     
 }

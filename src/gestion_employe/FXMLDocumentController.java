@@ -5,7 +5,7 @@
  */
 package gestion_employe;
 
-import classe.Employe;
+import classe.Employee;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -40,7 +40,7 @@ import service.EmployeService;
 public class FXMLDocumentController implements Initializable {
     
     EmployeService es = new EmployeService();
-    ObservableList<Employe> employeList = FXCollections.observableArrayList();
+    ObservableList<Employee> employeList = FXCollections.observableArrayList();
     private static int index;
     Date dt = new Date();
     
@@ -57,19 +57,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private PasswordField password;
     @FXML
-    private TableView<Employe> employes;
+    private TableView<Employee> employes;
     @FXML
-    private TableColumn<Employe, String> cNom;
+    private TableColumn<Employee, String> cNom;
     @FXML
-    private TableColumn<Employe, String> cPrenom;
+    private TableColumn<Employee, String> cPrenom;
     @FXML
-    private TableColumn<Employe, String> cTelephone;
+    private TableColumn<Employee, String> cTelephone;
     @FXML
-    private TableColumn<Employe, LocalDate> cDateEmbauche;
+    private TableColumn<Employee, LocalDate> cDateEmbauche;
     @FXML
-    private TableColumn<Employe, String> cEmail;
+    private TableColumn<Employee, String> cEmail;
     @FXML
-    private TableColumn<Employe, String> cPassword;
+    private TableColumn<Employee, String> cPassword;
     @FXML
     
     private void saveAction(ActionEvent event) {
@@ -81,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
         String ps = password.getText();
         Instant instant = Instant.from(d.atStartOfDay(ZoneId.systemDefault()));
         dt = Date.from(instant);
-        es.create(new Employe(n, p, t,dt,e,ps ));
+        es.create(new Employee(n, p, t,dt,e,ps ));
         load();
         clean();
         }
@@ -111,7 +111,7 @@ public class FXMLDocumentController implements Initializable {
             public void handle(MouseEvent event) {
                 TablePosition pos = (TablePosition) employes.getSelectionModel().getSelectedCells().get(0);
                 int row = pos.getRow();
-                Employe item = employes.getItems().get(row);
+                Employee item = employes.getItems().get(row);
                 nom.setText(item.getNom());
                 prenom.setText(item.getPrenom());
                 telephone.setText(item.getTelephone());
@@ -145,8 +145,8 @@ public class FXMLDocumentController implements Initializable {
         cDateEmbauche.setCellValueFactory(new PropertyValueFactory<>("dateEmbauche"));
         cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         cPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-//         for (Employe e : es.findAll()) {
-//            employeList.add(new Employe(e.getId(), e.getNom(),e.getPrenom(),e.getTelephone(),e.getDateEmbauche(),e.getEmail(),e.getPassword() ));
+//         for (Employee e : es.findAll()) {
+//            employeList.add(new Employee(e.getId(), e.getNom(),e.getPrenom(),e.getTelephone(),e.getDateEmbauche(),e.getEmail(),e.getPassword() ));
 //        }
          employes.setItems(employeList);
         

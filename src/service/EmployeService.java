@@ -5,7 +5,7 @@
  */
 package service;
 
-import classe.Employe;
+import classe.Employee;
 import dao.IDao;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -17,10 +17,10 @@ import util.HibernateUtil;
  *
  * @author PC
  */
-public class EmployeService implements IDao<Employe>{
+public class EmployeService implements IDao<Employee>{
 
     @Override
-    public boolean create(Employe o) {
+    public boolean create(Employee o) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -40,7 +40,7 @@ public class EmployeService implements IDao<Employe>{
         }
 
     @Override
-    public boolean update(Employe o) {
+    public boolean update(Employee o) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -60,7 +60,7 @@ public class EmployeService implements IDao<Employe>{
     }
 
     @Override
-    public boolean delete(Employe o) {
+    public boolean delete(Employee o) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -79,13 +79,13 @@ public class EmployeService implements IDao<Employe>{
         }
 
     @Override
-    public List<Employe> findAll() {
-        List<Employe> employes = null;
+    public List<Employee> findAll() {
+        List<Employee> employes = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            employes = session.createQuery("from Employe").list();
+            employes = session.createQuery("from Employee").list();
             tx.commit();
             session.close();
             return employes;
@@ -99,13 +99,13 @@ public class EmployeService implements IDao<Employe>{
         }
 
     @Override
-    public Employe findById(int id) {
-        Employe e = null;
+    public Employee findById(int id) {
+        Employee e = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            e = (Employe) session.get(Employe.class, id);
+            e = (Employee) session.get(Employee.class, id);
             tx.commit();
             session.close();
             return e;

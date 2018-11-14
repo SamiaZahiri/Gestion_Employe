@@ -35,7 +35,7 @@ public class Gestion_Employe extends Application {
      */
     public static void main(String[] args) {
         Session s = HibernateUtil.getSessionFactory().openSession();
-        EmployeService es = new EmployeService();
+        s.beginTransaction();
         
         launch(args);
     }
