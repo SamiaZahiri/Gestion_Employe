@@ -101,11 +101,39 @@ public class FXMLDocumentController implements Initializable {
             // ... user chose CANCEL or closed the dialog
         }
     }
+    @FXML
+    private void update() {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Confirmation de modification");
+        alert.setContentText("Vous vous vraiment modifier cette machine?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Employee e2 = es.findById(index);
+            //MachinList.set(index, m2);
+            e2.setDateEmbauche(dt);
+            e2.setNom(nom.getText());
+            e2.setPrenom(prenom.getText());
+            e2.setTelephone(telephone.getText());
+            e2.setEmail(email.getText());
+            e2.setPassword(password.getText());
+            
+            Instant instant = Instant.from(dateEmbauche.getValue().atStartOfDay(ZoneId.systemDefault()));
+            dt = Date.from(instant);
+            e2.setDateEmbauche(dt);
+           
+            es.update(e2);
+            employeList.clear();
+            load();
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//        load();
+        load();
         employes.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -122,7 +150,7 @@ public class FXMLDocumentController implements Initializable {
                 LocalDate localDate = LocalDate.parse(sdf.format(date), formatter);
                 dateEmbauche.setValue(localDate);
 //                System.out.println(localDate.MIN);
-//                load();
+                load();
             }
                 
                 });
@@ -145,9 +173,9 @@ public class FXMLDocumentController implements Initializable {
         cDateEmbauche.setCellValueFactory(new PropertyValueFactory<>("dateEmbauche"));
         cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         cPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-//         for (Employee e : es.findAll()) {
-//            employeList.add(new Employee(e.getId(), e.getNom(),e.getPrenom(),e.getTelephone(),e.getDateEmbauche(),e.getEmail(),e.getPassword() ));
-//        }
+         for (Employee e : es.findAll()) {
+            employeList.add(new Employee(e.getId(), e.getNom(),e.getPrenom(),e.getTelephone(),e.getDateEmbauche(),e.getEmail(),e.getPassword() ));
+        }
          employes.setItems(employeList);
         
     }

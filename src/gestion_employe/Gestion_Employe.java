@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 import service.EmployeService;
+import service.ProfileService;
 import util.HibernateUtil;
 
 /**
@@ -22,7 +23,7 @@ public class Gestion_Employe extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("vue/ProfileVue.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -35,6 +36,7 @@ public class Gestion_Employe extends Application {
      */
     public static void main(String[] args) {
         Session s = HibernateUtil.getSessionFactory().openSession();
+//        ProfileService ps = new  ProfileService();
         s.beginTransaction();
         
         launch(args);
